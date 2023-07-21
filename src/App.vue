@@ -21,5 +21,28 @@ import Footer from './components/Footer.vue'
   <Footer></Footer>
 </template>
 
+<style>
+/* Ancho del scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
 
+/* Track del scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle del scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #2d374b;
+  border-radius: 10px;
+}
+
+/* Handle del scrollbar al hacer hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1a2233;
+}
+
+</style>
 
