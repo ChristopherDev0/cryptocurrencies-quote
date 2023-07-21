@@ -21,21 +21,22 @@ function openModal() {
 
 <template>
     <div class="fixed top-0 left-0 right-0 z-10">            
-        <div class="py-4 px-14 border-b border-b-gray-700 bg-gray-950 bg-opacity-80 backdrop-filter backdrop-blur-sm flex items-center justify-between"> 
-            <div class="flex items-center gap-5">
-                <div class="rounded-full w-12 h-12 border-2 border-gray-600 flex items-center justify-center">
+        <div class="py-4 px-4 md:px-14 border-b border-b-gray-700 bg-gray-950 bg-opacity-70 backdrop-filter backdrop-blur-sm flex items-center justify-between"> 
+            <div class="flex items-center gap-1">
+                <img class="w-12 md:w-14" src="../assets/cripto.png" alt="image crypto">
+                <!-- <div class="rounded-full w-12 h-12 border-2 border-gray-600 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-purple-500 w-6" viewBox="0 0 24 24" ><path d="M3 11h8V3H3zm2-6h4v4H5zM3 21h8v-8H3zm2-6h4v4H5zm8-12v8h8V3zm6 6h-4V5h4zm-5.99 4h2v2h-2zm2 2h2v2h-2zm-2 2h2v2h-2zm4 0h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm2-6h2v2h-2zm2 2h2v2h-2z"></path></svg>
-                </div>
-                <h1 class="font-bold text-2xl tracking-[1px]">Cripto<span class="font-light">currencies</span></h1>
+                </div> -->
+                <h1 class="font-bold text-lg md:text-xl tracking-[1px]">Crypto<span class="font-light">currencies</span></h1>
             </div>
             <div>
                 <div>
                     <button
                     type="button"
                     @click="openModal"
-                    class="rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white border border-gray-700"
+                    class="rounded-md bg-gray-800 px-4 py-2 text-xs md:text-sm font-medium text-white border border-gray-700"
                     >
-                      Descripcion general
+                      Descripcion
                     </button>
                 </div>
                 <TransitionRoot appear :show="isOpen" as="template">
@@ -66,28 +67,27 @@ function openModal() {
                             leave-to="opacity-0 scale-95"
                         >
                             <DialogPanel
-                            class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                            class="w-full max-w-xl transform overflow-hidden rounded-2xl bg-gray-200 p-6 text-left align-middle shadow-xl transition-all"
                             >
-                            <DialogTitle
-                                as="h3"
-                                class="text-lg font-medium leading-6 text-gray-900"
-                            >
-                                Payment successful
+                            <DialogTitle as="h3">
+                               <div class="flex items-center gap-2">
+                                <img class="w-16" src="../assets/cripto.png" alt="image crypto">
+                                <h3 class="text-gray-800 font-bold text-xl">Cryptocurrencies</h3>
+                               </div>
                             </DialogTitle>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-500">
-                                Your payment has been successfully submitted. We’ve sent you
-                                an email with all of the details of your order.
+                                <p class="text-sm text-gray-500 bg-gray-100 p-5 shadow-lg rounded-lg border border-gray-100">
+                                    Nuestra web es una plataforma informativa dedicada a las criptomonedas, donde los usuarios pueden explorar y descubrir el emocionante mundo de las monedas digitales. <span class="font-bold">Ofrecemos una amplia variedad de datos actualizados sobre diferentes criptomonedas</span>, incluyendo precios en tiempo real, busqueda en mercado, volumen de criptomonedas y cambios históricos.
                                 </p>
                             </div>
 
                             <div class="mt-4">
                                 <button
                                 type="button"
-                                class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                class="inline-flex justify-center rounded-lg border border-transparent bg-gray-900 px-7 py-2 text-sm font-medium text-gray-200 hover:bg-gray-950 focus:outline-none"
                                 @click="closeModal"
                                 >
-                                Got it, thanks!
+                                ¡Gracias!
                                 </button>
                             </div>
                             </DialogPanel>

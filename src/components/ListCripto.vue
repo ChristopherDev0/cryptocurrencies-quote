@@ -39,13 +39,12 @@ const itemsToDisplay = computed(() => {
   if (!searchText.value) {
     return displayedItems.value;
   }
+  /* console.log(filteredItems.value) */
   return filteredItems.value;
 });
 
-
-
 onMounted(() => {
-    const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=25&tsym=USD';
+    const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=45&tsym=USD';
     fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -69,16 +68,22 @@ function prevPage() {
   }
 }
 
+const currentDate = () => {
+    const today = new Date(); // Obtiene la fecha y hora actual
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString('es-ES', options);
+    return formattedDate;
+}
 
 </script>
 
 <template>
-    <div class="min-h-[300px] bg-gray-900 rounded-lg px-7 py-7">
+    <div class="min-h-[300px] bg-gray-900 rounded-xl px-5 lg:px-7 py-7 lg:overflow-hidden">
         <div>
             <h2 class="font-medium text-xl">Criptomonedas - seguimiento</h2>
-            <p class="text-gray-500 mt-1">Actualizado: 19 de junio del 2023</p>
+            <p class="text-gray-500 mt-1">Actualizado: {{ currentDate() }}</p>
         </div>
-        <div class="rounded-lg border border-gray-500 hover:border-purple-500 transition-colors px-2 pb-1 pt-[2px] w-96 mt-5">
+        <div class="rounded-lg border border-gray-500 hover:border-purple-500 transition-colors px-2 pb-1 pt-[2px] w-full md:w-96 mt-5">
             <p class="text-sm text-gray-500">Buscar ahora</p>
             <form>
                  <input 
@@ -88,13 +93,13 @@ function prevPage() {
             </form>
         </div>
 
-        <table class="table-auto w-full mt-7">
+        <table class="table-auto w-full mt-7 ">
             <thead class="text-left border-t border-b border-gray-500">
                 <tr>
                     <th class="px-4 py-5 font-normal text-sm text-gray-400">
                         <div class="inline-flex items-center gap-2">
                             <span>Nombre</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-red-500 w-5" viewBox="0 0 24 24"><path d="M19 2H5c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3.5l3.5 4 3.5-4H19c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM9 12a2 2 0 1 1 .001-4.001A2 2 0 0 1 9 12zm6 0a2 2 0 1 1 .001-4.001A2 2 0 0 1 15 12z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-cyan-400 w-5" viewBox="0 0 24 24"><path d="M19 2H5c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h3.5l3.5 4 3.5-4H19c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM9 12a2 2 0 1 1 .001-4.001A2 2 0 0 1 9 12zm6 0a2 2 0 1 1 .001-4.001A2 2 0 0 1 15 12z"></path></svg>
                         </div>
                     </th>
                     <th class="px-4 py-5 font-normal text-sm text-gray-400">
@@ -103,19 +108,19 @@ function prevPage() {
                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-green-500 w-5" viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm1 14.915V18h-2v-1.08c-2.339-.367-3-2.002-3-2.92h2c.011.143.159 1 2 1 1.38 0 2-.585 2-1 0-.324 0-1-2-1-3.48 0-4-1.88-4-3 0-1.288 1.029-2.584 3-2.915V6.012h2v1.109c1.734.41 2.4 1.853 2.4 2.879h-1l-1 .018C13.386 9.638 13.185 9 12 9c-1.299 0-2 .516-2 1 0 .374 0 1 2 1 3.48 0 4 1.88 4 3 0 1.288-1.029 2.584-3 2.915z"></path></svg>
                         </div>
                     </th>
-                    <th class="px-4 py-5 font-normal text-sm text-gray-400">
+                    <th class="px-4 hidden md:table-cell py-5 font-normal text-sm text-gray-400">
                         <div class="inline-flex items-center gap-2">
                             <span>Más alto</span>
                             <svg xmlns="http://www.w3.org/2000/svg"  class="fill-current text-pink-500 w-5" viewBox="0 0 24 24"><path d="m2.6 13.083 3.452 1.511L16 9.167l-6 7 8.6 3.916a1 1 0 0 0 1.399-.85l1-15a1.002 1.002 0 0 0-1.424-.972l-17 8a1.002 1.002 0 0 0 .025 1.822zM8 22.167l4.776-2.316L8 17.623z"></path></svg>
                         </div>
                     </th>
-                    <th class="px-4 py-5 font-normal text-sm text-gray-400">
+                    <th class="px-4 hidden lg:table-cell py-5 font-normal text-sm text-gray-400">
                         <div class="inline-flex items-center gap-2">
                             <span>Variación</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-blue-600 w-5" viewBox="0 0 24 24"><path d="M20 12a2 2 0 0 0-.703.133l-2.398-1.963c.059-.214.101-.436.101-.67C17 8.114 15.886 7 14.5 7S12 8.114 12 9.5c0 .396.1.765.262 1.097l-2.909 3.438A2.06 2.06 0 0 0 9 14c-.179 0-.348.03-.512.074l-2.563-2.563C5.97 11.348 6 11.179 6 11c0-1.108-.892-2-2-2s-2 .892-2 2 .892 2 2 2c.179 0 .348-.03.512-.074l2.563 2.563A1.906 1.906 0 0 0 7 16c0 1.108.892 2 2 2s2-.892 2-2c0-.237-.048-.46-.123-.671l2.913-3.442c.227.066.462.113.71.113a2.48 2.48 0 0 0 1.133-.281l2.399 1.963A2.077 2.077 0 0 0 18 14c0 1.108.892 2 2 2s2-.892 2-2-.892-2-2-2z"></path></svg>
                         </div>
                     </th>
-                    <th class="px-4 py-5 font-normal text-sm text-gray-400">
+                    <th class="px-4 hidden lg:table-cell py-5 font-normal text-sm text-gray-400">
                         <div class="inline-flex items-center gap-2">
                             <span>Logotipo</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-yellow-500 w-5" viewBox="0 0 24 24"><path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z"></path><path d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"></path></svg>
@@ -123,7 +128,7 @@ function prevPage() {
                     </th>
                 </tr>
             </thead>
-            <tbody v-for="cripto in itemsToDisplay" :key="cripto.id"> 
+            <tbody v-for="cripto in itemsToDisplay" :key="cripto.id">
                 <tr class="hover:opacity-[0.6] transition-all">
                 <td class="px-4 py-4">
                     <div class="inline-flex items-center gap-2">
@@ -132,23 +137,26 @@ function prevPage() {
                     </div>
                 </td>
                 <td class="px-4 py-4"><span class="text-[10px] p-1 font-medium rounded-sm bg-neutral-950 text-cyan-300">USD</span> {{ cripto.DISPLAY.USD.PRICE }}</td> 
-                <td class="px-4 py-4"><span class="text-[10px] p-1 font-medium rounded-sm bg-neutral-950 text-yellow-400">USD</span> {{ cripto.DISPLAY.USD.HIGHDAY }}</td> 
-                <td class="px-4 py-4 text-green-400">% {{ cripto.DISPLAY.USD.CHANGEPCT24HOUR }}</td> 
-                <td class="px-4 py-4">
+                <td class="hidden md:table-cell px-4 py-4"><span class="text-[10px] p-1 font-medium rounded-sm bg-neutral-950 text-yellow-400">USD</span> {{ cripto.DISPLAY.USD.HIGHDAY }}</td> 
+                <td class="hidden lg:table-cell px-4 py-4 text-green-400">{{ cripto.DISPLAY.USD.CHANGEPCT24HOUR }} %</td> 
+                <td class="hidden lg:table-cell px-4 py-4">
                     <img class="w-10" :src="'https://cryptocompare.com/' + cripto.CoinInfo.ImageUrl" alt="cripto imagge">
                 </td>
                 </tr>
             </tbody>
         </table>
 
+        <div v-if="itemsToDisplay.length == 0">
+                <p class="text-xl text-gray-400 py-10 text-center">No se ha encontrado ninguna coincidencia</p>
+        </div> 
         <!-- paginador -->
         <div class="bg-gray-800 p-5 rounded-md mt-5 flex items-center justify-between">
-            <p class="text-sm text-gray-400">Pagina {{ currentPage }} de {{ totalPages }}</p>
+            <p class="text-sm text-gray-400">Pagina {{ itemsToDisplay == filteredItems ? 1 : currentPage  }} de {{ itemsToDisplay == filteredItems ? 1 : totalPages }}</p>
             <div class="flex items-center gap-7">
-                <button  @click="prevPage" class="w-9 h-9 rounded-md border border-gray-400 hover:bg-purple-700 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-400 w-5" viewBox="0 0 24 24"><path d="m8.121 12 4.94-4.939-2.122-2.122L3.879 12l7.06 7.061 2.122-2.122z"></path><path d="M17.939 4.939 10.879 12l7.06 7.061 2.122-2.122L15.121 12l4.94-4.939z"></path></svg>                </button>
-                <button @click="nextPage" class="w-9 h-9 rounded-md border border-gray-400 hover:bg-purple-700 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-400 w-5" viewBox="0 0 24 24"><path d="m13.061 4.939-2.122 2.122L15.879 12l-4.94 4.939 2.122 2.122L20.121 12z"></path><path d="M6.061 19.061 13.121 12l-7.06-7.061-2.122 2.122L8.879 12l-4.94 4.939z"></path></svg>
+                <button  @click="prevPage" class="w-9 h-9 rounded-md border text-gray-400 hover:text-white border-gray-400 hover:bg-purple-500 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current  w-5" viewBox="0 0 24 24"><path d="m8.121 12 4.94-4.939-2.122-2.122L3.879 12l7.06 7.061 2.122-2.122z"></path><path d="M17.939 4.939 10.879 12l7.06 7.061 2.122-2.122L15.121 12l4.94-4.939z"></path></svg>                </button>
+                <button @click="nextPage" class="w-9 h-9 rounded-md border text-gray-400 hover:text-white border-gray-400 hover:bg-purple-500 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current w-5" viewBox="0 0 24 24"><path d="m13.061 4.939-2.122 2.122L15.879 12l-4.94 4.939 2.122 2.122L20.121 12z"></path><path d="M6.061 19.061 13.121 12l-7.06-7.061-2.122 2.122L8.879 12l-4.94 4.939z"></path></svg>
                 </button>
             </div>
         </div>
